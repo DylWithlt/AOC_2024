@@ -26,7 +26,7 @@ def chunked_iterable(iterable, chunk_size):
 
 
 def check_combos_sync(test_val, vals):
-    for combo in itertools.product(opts, repeat=len(vals) - 1):
+    for combo in chunked_iterable(itertools.product(opts, repeat=len(vals) - 1), 500):
         total = vals[0]
         for i, x in enumerate(vals[1:]):
             if total > test_val:
